@@ -1,6 +1,9 @@
 # Yeoman
 This is a LEGO Mindstorm EV3 with Amazon Alexa voice command trainer for flag semaphore
 Flag Semaphore is telemetry system conveying information at a distance by means of visual signals with hand-held flags, rods, disks, paddles, or occasionally bare or gloved hands. Information is encoded by the position of the flags where it is read when the flag is in a fixed position. Semaphores were adopted and widely used in the maritime world in the 19th century. Despite modern alternative electronic communication means, flag semaphore is use a must learnt subject by all navies and mariners around the world.
+<p align="left">
+  <img src="https://cdn.britannica.com/41/133741-050-FA798221/Semaphore-flag-signals.jpg" width="300" title="flag semaphore[source: Britannica]">
+</p>
 
 ## Connection Diagram
 ev3_yeoman.jpg 
