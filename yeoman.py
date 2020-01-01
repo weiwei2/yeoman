@@ -40,6 +40,9 @@ class Direction(Enum):
     LEFT = ['left', 'go left']
     RIGHT = ['right', 'go right']
     STOP = ['stop', 'brake']
+    LETTER_A=['letter a']
+    LETTER_B=['letter b']
+    LETTER_C=['letter c']
 
 
 class Command(Enum):
@@ -49,9 +52,6 @@ class Command(Enum):
     """
     MOVE_CIRCLE = ['circle', 'spin']
     MOVE_SQUARE = ['square']
-    LETTER_A=['letter a']
-    LETTER_B=['letter b']
-    LETTER_C=['letter c']
     PATROL = ['patrol', 'guard mode', 'sentry mode']
     FIRE_ONE = ['cannon', '1 shot', 'one shot']
     FIRE_ALL = ['all shot']
@@ -150,7 +150,21 @@ class MindstormsGadget(AlexaGadget):
             self.drive.off()
             self.patrol_mode = False
 
-    def _activate(self, command, speed=50):
+        """beginning of definition"""
+        if direction in Direction.LETTER_A.value:        
+            """letter A"""
+            self.right_motor.on_to_position(20,90)
+            """self.left_motor.on_to_position(SemaphoreSpeed,0)"""
+        if direction in Direction.LETTER_B.value:          
+            """letter B"""
+            self.right_motor.on_to_position(20,70)
+            self.left_motor.on_to_position(SemaphoreSpeed,90)
+        if direction in Direction.LETTER_C.value:         
+            """letter C"""
+            self.right_motor.on_to_position(20,20)
+            self.left_motor.on_to_position(SemaphoreSpeed,0)
+
+    def _activate(self, command, speed=SemaphoreSpeed):
         """
         Handles preset commands.
         :param command: the preset command
@@ -159,32 +173,21 @@ class MindstormsGadget(AlexaGadget):
         print("Activate command: ({}, {})".format(command, speed), file=sys.stderr)
         if command in Command.MOVE_CIRCLE.value:
             """self.drive.on_for_seconds(SpeedPercent(int(speed)), SpeedPercent(5), 12)"""
-            self.left_motor.COMMAND_RUN_TO_ABS_POS(position_sp=80)
+            self.left_motor.on_to_position(SemaphoreSpeed,0)
 
         if command in Command.MOVE_SQUARE.value:
             for i in range(4):
                 """self._move("right", 2, speed, is_blocking=True)"""
                 self.right_motor.run_to_abs_pos(position_sp = 30)
 
-        if command in Command.LETTER_A.value:        
-            """letter A"""
-            self.right_motor.on_to_position(20,90)
-            self.left_motor.on_to_position(SemaphoreSpeed,0)
-        if command in Command.LETTER_B.value:        
-            """letter B"""
-            self.right_motor.on_to_position(20,70)
-            self.left_motor.on_to_position(SemaphoreSpeed,90)
-        if command in Command.LETTER_C.value:        
-            """letter C"""
-            self.right_motor.on_to_position(20,20)
-            self.left_motor.on_to_position(SemaphoreSpeed,0)
+        
         if command in Command.PATROL.value:
             # Set patrol mode to resume patrol thread processing
             self.patrol_mode = True
 
         if command in Command.FIRE_ONE.value:
             """self.weapon.on_for_rotations(SpeedPercent(100), 3)"""
-            self.left_motor.COMMAND_RUN_TO_ABS_POS(position_sp=80)
+            self.left_motor.on_to_position(SemaphoreSpeed,0)
             
 
         if command in Command.FIRE_ALL.value:
