@@ -54,7 +54,7 @@
           "samples": [
             "{Direction} now",
             "{Direction} {Duration} seconds",
-            "move {Direction} for {Duration} seconds"            
+            "move {Direction} for {Duration} seconds"
           ]
         },
         {
@@ -82,6 +82,7 @@
           "samples": [
             "activate {Command} mode",
             "move in a {Command}",
+            "show {Command}",
             "fire {Command}",
             "activate {Command}"
           ]
@@ -95,7 +96,6 @@
             }
           ],
           "samples": [
-            "show {Position}",
             "go to {Position}"
           ]
         }
@@ -158,12 +158,47 @@
               "name": {
                 "value": "forward"
               }
+            },
+            {
+              "name": {
+                "value": "letter A"
+              }
+            },
+            {
+              "name": {
+                "value": "letter B"
+              }
+            },
+            {
+              "name": {
+                "value": "letter C"
+              }
+            },
+            {
+              "name": {
+                "value": "letter d"
+              }
+            },
+            {
+              "name": {
+                "value": "letter e"
+              }
+            },
+            {
+              "name": {
+                "value": "letter f"
+              }
+            },
+            {
+              "name": {
+                "value": "letter g"
+              }
             }
           ]
         },
         {
-          "name":"PositionType",
-          "values":[
+          "name": "PositionType",
+          "values": [
             {
               "name": {
                 "value": "error"
@@ -175,8 +210,8 @@
           "name": "CommandType",
           "values": [
             {
-              "name":{
-                "value":"letter a"
+              "name": {
+                "value": "letter N"
               }
             },
             {
