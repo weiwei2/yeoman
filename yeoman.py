@@ -171,7 +171,9 @@ class MindstormsGadget(AlexaGadget):
             """self.drive.on_for_seconds(SpeedPercent(speed), SpeedPercent(speed), duration, block=is_blocking)"""
             """self.COMMAND_RUN_TO_ABS_POS(80)"""
             """self.right_motor.run_to_abs_pos(position_sp = 30)"""
+            """0to180 CCW"""
             self.right_motor.on_to_position(SemaphoreSpeed,duration)
+            """0to180 CW"""
             self.left_motor.on_to_position(SemaphoreSpeed,duration)
             print("direction:{}, Direction.Forward.value: {}".format(direction,Direction.FORWARD.value),file=sys.stderr)
 
@@ -193,97 +195,101 @@ class MindstormsGadget(AlexaGadget):
         """
         handles flag position
         """
-        print("flag position position[0]:{},Position.A.value[0]:{},Position.M.value[0]: {}".format(position[0],Position.A.value[0],Position.M.value[0]),file=sys.stderr)
-        if position[0] in Position.A.value[0]:            
+        print("flag position position[0].lower():{},Position.A.value[0].lower():{}".format(position[0].lower(),Position.A.value[0].lower()),file=sys.stderr)
+        if position[0].lower() in Position.A.value[0]:            
             self.right_motor.on_to_position(speed,135)
             self.left_motor.on_to_position(speed,180)
-        if position[0] in Position.B.value[0]:            
+        if position[0].lower() in Position.B.value[0]:            
             self.right_motor.on_to_position(speed,90)
             self.left_motor.on_to_position(speed,180)
-        if position[0] in Position.C.value[0]:            
+        if position[0].lower() in Position.C.value[0]:            
             self.right_motor.on_to_position(speed,45)
             self.left_motor.on_to_position(speed,180)
-        if position[0] in Position.D.value[0]:            
+        if position[0].lower() in Position.D.value[0]:            
             self.right_motor.on_to_position(speed,0)
             self.left_motor.on_to_position(speed,180)
-        if position[0] in Position.E.value[0]:            
+        if position[0].lower() in Position.E.value[0]:            
             self.right_motor.on_to_position(speed,180)
             self.left_motor.on_to_position(speed,45)
-        if position[0] in Position.F.value[0]:            
+        if position[0].lower() in Position.F.value[0]:            
             self.right_motor.on_to_position(speed,180)
             self.left_motor.on_to_position(speed,90)
-        if position[0] in Position.G.value[0]:            
+        if position[0].lower() in Position.G.value[0]:            
             self.right_motor.on_to_position(speed,180)
             self.left_motor.on_to_position(speed,135)
-        if position[0] in Position.H.value[0]: 
+        if position[0].lower() in Position.H.value[0]: 
             """go home first before proceed to avoid clash"""  
             self.right_motor.on_to_position(speed,0)
             self.left_motor.on_to_position(speed,0)         
             self.right_motor.on_to_position(speed,90)
             self.left_motor.on_to_position(speed,225)
-        if position[0] in Position.I.value[0]:            
+        if position[0].lower() in Position.I.value[0]:            
             """go home first before proceed to avoid clash"""  
             self.right_motor.on_to_position(speed,0)
             self.left_motor.on_to_position(speed,0)         
             self.right_motor.on_to_position(speed,45)
             self.left_motor.on_to_position(speed,225)
-        if position[0] in Position.J.value[0]:            
+        if position[0].lower() in Position.J.value[0]:            
             self.right_motor.on_to_position(speed,0)
             self.left_motor.on_to_position(speed,90)
-        if position[0] in Position.K.value[0]:            
+        if position[0].lower() in Position.K.value[0]:            
             self.right_motor.on_to_position(speed,135)
             self.left_motor.on_to_position(speed,0)
-        if position[0] in Position.L.value[0]:            
+        if position[0].lower() in Position.L.value[0]:            
             self.right_motor.on_to_position(speed,135)
             self.left_motor.on_to_position(speed,45)
-        if position[0] in Position.M.value[0]:
+        if position[0].lower() in Position.M.value[0]:
             self.right_motor.on_to_position(speed,135)
             self.left_motor.on_to_position(speed,90)
-        if position[0] in Position.N.value[0]:            
+        if position[0].lower() in Position.N.value[0]:            
             self.right_motor.on_to_position(speed,135)
             self.left_motor.on_to_position(speed,135)
-        if position[0] in Position.O.value[0]:
+        if position[0].lower() in Position.O.value[0]:
             self.right_motor.on_to_position(speed,45)
             self.left_motor.on_to_position(speed,225)
-        if position[0] in Position.P.value[0]:            
+        if position[0].lower() in Position.P.value[0]:            
             self.right_motor.on_to_position(speed,45)
             self.left_motor.on_to_position(speed,0)
-        if position[0] in Position.Q.value[0]:
+        if position[0].lower() in Position.Q.value[0]:
+            print("flag position position[0].lower():{},Position.Q.value[0].lower():{}".format(position[0].lower(),Position.Q.value[0].lower()),file=sys.stderr)
             self.right_motor.on_to_position(speed,90)
             self.left_motor.on_to_position(speed,45)
-        if position[0] in Position.R.value[0]:
+        if position[0].lower() in Position.R.value[0]:
+            print("flag position position[0].lower():{},Position.R.value[0].lower():{}".format(position[0].lower(),Position.R.value[0].lower()),file=sys.stderr)
             self.right_motor.on_to_position(speed,90)
             self.left_motor.on_to_position(speed,90)
-        if position[0] in Position.S.value[0]:
+        if position[0].lower() in Position.S.value[0]:
+            print("flag position position[0].lower():{},Position.S.value[0].lower():{}".format(position[0].lower(),Position.S.value[0].lower()),file=sys.stderr)
             self.right_motor.on_to_position(speed,45)
             self.left_motor.on_to_position(speed,135)
-        if position[0] in Position.T.value[0]:
+        if position[0].lower() in Position.T.value[0]:
+            print("flag position position[0].lower():{},Position.T.value[0].lower():{}".format(position[0].lower(),Position.T.value[0].lower()),file=sys.stderr)
             self.right_motor.on_to_position(speed,45)
             self.left_motor.on_to_position(speed,0)
-        if position[0] in Position.U.value[0]:
+        if position[0].lower() in Position.U.value[0]:
             self.right_motor.on_to_position(speed,45)
             self.left_motor.on_to_position(speed,45)
-        if position[0] in Position.V.value[0]:
+        if position[0].lower() in Position.V.value[0]:
             self.right_motor.on_to_position(speed,0)
             self.left_motor.on_to_position(speed,135)
-        if position[0] in Position.W.value[0]:
+        if position[0].lower() in Position.W.value[0]:
             """ homing of all motors """
             self.right_motor.on_to_position(SemaphoreSpeed,0)
             self.left_motor.on_to_position(SemaphoreSpeed,0)
             """ end of homing """
             self.right_motor.on_to_position(speed,270)
             self.left_motor.on_to_position(speed,45)
-        if position[0] in Position.X.value[0]:
+        if position[0].lower() in Position.X.value[0]:
             """ homing of all motors """
             self.right_motor.on_to_position(SemaphoreSpeed,0)
             self.left_motor.on_to_position(SemaphoreSpeed,0)
             """ end of homing """
             self.right_motor.on_to_position(speed,270)
             self.left_motor.on_to_position(speed,135)
-        if position[0] in Position.Y.value[0]:
+        if position[0].lower() in Position.Y.value[0]:
             self.right_motor.on_to_position(speed,45)
             self.left_motor.on_to_position(speed,90)
-        if position[0] in Position.Z.value[0]:
+        if position[0].lower() in Position.Z.value[0]:
             """ homing of all motors """
             self.right_motor.on_to_position(SemaphoreSpeed,0)
             self.left_motor.on_to_position(SemaphoreSpeed,0)
