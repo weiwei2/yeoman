@@ -188,17 +188,122 @@
               "name": {
                 "value": "d"
               }
+            },
+            {
+              "name": {
+                "value": "e"
+              }
+            },
+            {
+              "name": {
+                "value": "f"
+              }
+            },
+            {
+              "name": {
+                "value": "g"
+              }
+            },
+            {
+              "name": {
+                "value": "h"
+              }
+            },
+            {
+              "name": {
+                "value": "i"
+              }
+            },
+            {
+              "name": {
+                "value": "j"
+              }
+            },
+            {
+              "name": {
+                "value": "k"
+              }
+            },
+            {
+              "name": {
+                "value": "l"
+              }
+            },
+            {
+              "name": {
+                "value": "m"
+              }
+            },
+            {
+              "name": {
+                "value": "n"
+              }
+            },
+            {
+              "name": {
+                "value": "o"
+              }
+            },
+            {
+              "name": {
+                "value": "p"
+              }
+            },
+            {
+              "name": {
+                "value": "q"
+              }
+            },
+            {
+              "name": {
+                "value": "r"
+              }
+            },
+            {
+              "name": {
+                "value": "s"
+              }
+            },
+            {
+              "name": {
+                "value": "t"
+              }
+            },
+            {
+              "name": {
+                "value": "u"
+              }
+            },
+            {
+              "name": {
+                "value": "v"
+              }
+            },
+            {
+              "name": {
+                "value": "w"
+              }
+            },
+            {
+              "name": {
+                "value": "x"
+              }
+            },
+            {
+              "name": {
+                "value": "y"
+              }
+            },
+            {
+              "name": {
+                "value": "z"
+              }
             }
           ]
         },
         {
           "name": "CommandType",
           "values": [
-            {
-              "name": {
-                "value": "letter N"
-              }
-            },
             {
               "name": {
                 "value": "circle"

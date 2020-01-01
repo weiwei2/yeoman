@@ -46,32 +46,32 @@ class Position(Enum):
     the list of flag semaphore positions and their respective variation
     these variations correspond to the skill slot value
     """
-    A=['a']
-    B=['b']
-    C=['c']
-    D=['d']
-    E=['e']
-    F=['f']
-    G=['g']
-    H=['h']
-    I=['i']
-    J=['j']
-    K=['k']
-    L=['l']
-    M=['m']
-    N=['n']
-    O=['o']
-    P=['p']
-    Q=['q']
-    R=['r']
-    S=['s']
-    T=['t']
-    U=['u']
-    V=['v']
-    W=['w']
-    X=['x']
-    Y=['y']
-    Z=['z']
+    A=['a','alfa']
+    B=['b','bravo']
+    C=['c','charlie']
+    D=['d','delta']
+    E=['e','echo']
+    F=['f','foxtro']
+    G=['g','golf']
+    H=['h','hotel']
+    I=['i','india']
+    J=['j','juliett']
+    K=['k','kilo']
+    L=['l','lima']
+    M=['m','mike']
+    N=['n','november']
+    O=['o','oscar']
+    P=['p','papa']
+    Q=['q','quebec']
+    R=['r','romeo']
+    S=['s','sierra']
+    T=['t','tango']
+    U=['u','uniform']
+    V=['v','victor']
+    W=['w','whisky']
+    X=['x','x-ray']
+    Y=['y','yankee']
+    Z=['z','zulu']
 
 class Command(Enum):
     """
@@ -105,7 +105,10 @@ class MindstormsGadget(AlexaGadget):
         self.sound = Sound()
         self.left_motor = LargeMotor(OUTPUT_B)
         self.right_motor = LargeMotor(OUTPUT_C)
-        self.drive = MoveTank(OUTPUT_B, OUTPUT_C)
+        """homing"""
+        """self.right_motor.on_to_position(SemaphoreSpeed,0)"""
+        """self.left_motor.on_to_position(SemaphoreSpeed,0)"""
+        """self.drive = MoveTank(OUTPUT_B, OUTPUT_C)"""
         """self.weapon = MediumMotor(OUTPUT_A)"""
 
         # Start threads
@@ -139,7 +142,7 @@ class MindstormsGadget(AlexaGadget):
             print("Control payload: {}".format(payload), file=sys.stderr)
             control_type = payload["type"]
             if control_type == "move":
-
+                print("if control_ype=='move'")
                 # Expected params: [direction, duration, speed]
                 self._move(payload["direction"], int(payload["duration"]), int(payload["speed"]))
 
@@ -169,6 +172,8 @@ class MindstormsGadget(AlexaGadget):
             """self.COMMAND_RUN_TO_ABS_POS(80)"""
             """self.right_motor.run_to_abs_pos(position_sp = 30)"""
             self.right_motor.on_to_position(SemaphoreSpeed,duration)
+            self.left_motor.on_to_position(SemaphoreSpeed,duration)
+            print("direction:{}, Direction.Forward.value: {}".format(direction,Direction.FORWARD.value),file=sys.stderr)
 
         if direction in Direction.BACKWARD.value:
             """self.drive.on_for_seconds(SpeedPercent(-speed), SpeedPercent(-speed), duration, block=is_blocking)"""
@@ -178,23 +183,114 @@ class MindstormsGadget(AlexaGadget):
 
         if direction in (Direction.RIGHT.value + Direction.LEFT.value):
             self._turn(direction, speed)
-            self.drive.on_for_seconds(SpeedPercent(speed), SpeedPercent(speed), duration, block=is_blocking)
+            """self.drive.on_for_seconds(SpeedPercent(speed), SpeedPercent(speed), duration, block=is_blocking)"""
 
         if direction in Direction.STOP.value:
-            self.drive.off()
-            self.patrol_mode = False        
+            """self.drive.off()"""
+            self.patrol_mode = False  
     
     def _flagpostion(self,position, speed=SemaphoreSpeed):
         """
         handles flag position
         """
-        print("flag position: ({},{})".format(position,speed),file=sys.stderr)
-        if position in Position.A.value:            
-            self.right_motor.on_to_position(speed,20)
+        print("flag position position[0]:{},Position.A.value[0]:{},Position.M.value[0]: {}".format(position[0],Position.A.value[0],Position.M.value[0]),file=sys.stderr)
+        if position[0] in Position.A.value[0]:            
+            self.right_motor.on_to_position(speed,135)
+            self.left_motor.on_to_position(speed,180)
+        if position[0] in Position.B.value[0]:            
+            self.right_motor.on_to_position(speed,90)
+            self.left_motor.on_to_position(speed,180)
+        if position[0] in Position.C.value[0]:            
+            self.right_motor.on_to_position(speed,45)
+            self.left_motor.on_to_position(speed,180)
+        if position[0] in Position.D.value[0]:            
+            self.right_motor.on_to_position(speed,0)
+            self.left_motor.on_to_position(speed,180)
+        if position[0] in Position.E.value[0]:            
+            self.right_motor.on_to_position(speed,180)
+            self.left_motor.on_to_position(speed,45)
+        if position[0] in Position.F.value[0]:            
+            self.right_motor.on_to_position(speed,180)
             self.left_motor.on_to_position(speed,90)
-        if position in Position.B.value:            
-            self.right_motor.on_to_position(speed,80)
+        if position[0] in Position.G.value[0]:            
+            self.right_motor.on_to_position(speed,180)
+            self.left_motor.on_to_position(speed,135)
+        if position[0] in Position.H.value[0]: 
+            """go home first before proceed to avoid clash"""  
+            self.right_motor.on_to_position(speed,0)
+            self.left_motor.on_to_position(speed,0)         
+            self.right_motor.on_to_position(speed,90)
+            self.left_motor.on_to_position(speed,225)
+        if position[0] in Position.I.value[0]:            
+            """go home first before proceed to avoid clash"""  
+            self.right_motor.on_to_position(speed,0)
+            self.left_motor.on_to_position(speed,0)         
+            self.right_motor.on_to_position(speed,45)
+            self.left_motor.on_to_position(speed,225)
+        if position[0] in Position.J.value[0]:            
+            self.right_motor.on_to_position(speed,0)
+            self.left_motor.on_to_position(speed,90)
+        if position[0] in Position.K.value[0]:            
+            self.right_motor.on_to_position(speed,135)
             self.left_motor.on_to_position(speed,0)
+        if position[0] in Position.L.value[0]:            
+            self.right_motor.on_to_position(speed,135)
+            self.left_motor.on_to_position(speed,45)
+        if position[0] in Position.M.value[0]:
+            self.right_motor.on_to_position(speed,135)
+            self.left_motor.on_to_position(speed,90)
+        if position[0] in Position.N.value[0]:            
+            self.right_motor.on_to_position(speed,135)
+            self.left_motor.on_to_position(speed,135)
+        if position[0] in Position.O.value[0]:
+            self.right_motor.on_to_position(speed,45)
+            self.left_motor.on_to_position(speed,225)
+        if position[0] in Position.P.value[0]:            
+            self.right_motor.on_to_position(speed,45)
+            self.left_motor.on_to_position(speed,0)
+        if position[0] in Position.Q.value[0]:
+            self.right_motor.on_to_position(speed,90)
+            self.left_motor.on_to_position(speed,45)
+        if position[0] in Position.R.value[0]:
+            self.right_motor.on_to_position(speed,90)
+            self.left_motor.on_to_position(speed,90)
+        if position[0] in Position.S.value[0]:
+            self.right_motor.on_to_position(speed,45)
+            self.left_motor.on_to_position(speed,135)
+        if position[0] in Position.T.value[0]:
+            self.right_motor.on_to_position(speed,45)
+            self.left_motor.on_to_position(speed,0)
+        if position[0] in Position.U.value[0]:
+            self.right_motor.on_to_position(speed,45)
+            self.left_motor.on_to_position(speed,45)
+        if position[0] in Position.V.value[0]:
+            self.right_motor.on_to_position(speed,0)
+            self.left_motor.on_to_position(speed,135)
+        if position[0] in Position.W.value[0]:
+            """ homing of all motors """
+            self.right_motor.on_to_position(SemaphoreSpeed,0)
+            self.left_motor.on_to_position(SemaphoreSpeed,0)
+            """ end of homing """
+            self.right_motor.on_to_position(speed,270)
+            self.left_motor.on_to_position(speed,45)
+        if position[0] in Position.X.value[0]:
+            """ homing of all motors """
+            self.right_motor.on_to_position(SemaphoreSpeed,0)
+            self.left_motor.on_to_position(SemaphoreSpeed,0)
+            """ end of homing """
+            self.right_motor.on_to_position(speed,270)
+            self.left_motor.on_to_position(speed,135)
+        if position[0] in Position.Y.value[0]:
+            self.right_motor.on_to_position(speed,45)
+            self.left_motor.on_to_position(speed,90)
+        if position[0] in Position.Z.value[0]:
+            """ homing of all motors """
+            self.right_motor.on_to_position(SemaphoreSpeed,0)
+            self.left_motor.on_to_position(SemaphoreSpeed,0)
+            """ end of homing """
+            self.right_motor.on_to_position(speed,225)
+            self.left_motor.on_to_position(speed,90)
+
 
     def _activate(self, command, speed=SemaphoreSpeed):
         """
