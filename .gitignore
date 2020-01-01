@@ -1,3 +1,6 @@
+#alexa skill id and secret in ini, ignore
+*.ini
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
