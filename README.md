@@ -3,13 +3,12 @@ yeoman signal
 
 Connection Diagram
 ev3_yeoman.jpg 
-![Screenshot](ev3_yeoman.jpg)
 <p align="center">
-  <img src="ev3_yeoman.jpg" width="350" title="connection diagram">
+  <img src="ev3_yeoman.jpg" width="400" title="connection diagram">
 </p>
 
 Video showing operation
-[![IMAGE ALT TEXT](youtubeJPG.jpg)](https://youtu.be/MzIEqMTVzdM "Video Title")
+[![](http://img.youtube.com/vi/MzIEqMTVzdM/0.jpg)](http://www.youtube.com/watch?v=MzIEqMTVzdM "Yeoman decoding flag semaphore")
 ev3_yeoman.mp4
 
 
@@ -26,22 +25,22 @@ D=['d','delta']
 E=['e','echo']
 F=['f','foxtro']
 G=['g','golf']
-    H=['h','hotel']
-    I=['i','india']
-    J=['j','juliett']
-    K=['k','kilo']
-    L=['l','lima']
-    M=['m','mike']
-    N=['n','november']
-    O=['o','oscar']
-    P=['p','papa']
-    Q=['q','quebec']
-    R=['r','romeo']
-    S=['s','sierra']
-    T=['t','tango']
-    U=['u','uniform']
-    V=['v','victor']
-    W=['w','whisky']
-    X=['x','x-ray']
-    Y=['y','yankee']
-    Z=['z','zulu']
+H=['h','hotel']
+I=['i','india']
+J=['j','juliett']
+K=['k','kilo']
+L=['l','lima']
+M=['m','mike']
+N=['n','november']
+O=['o','oscar']
+P=['p','papa']
+Q=['q','quebec']
+R=['r','romeo']
+S=['s','sierra']
+T=['t','tango']
+U=['u','uniform']
+V=['v','victor']
+W=['w','whisky']
+X=['x','x-ray']
+Y=['y','yankee']
+Z=['z','zulu']
