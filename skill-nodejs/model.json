@@ -88,7 +88,7 @@
           ]
         },
         {
-          "name": "SetPositionIntent",
+          "name": "SetFlagPositionIntent",
           "slots": [
             {
               "name": "Position",
@@ -96,7 +96,7 @@
             }
           ],
           "samples": [
-            "go to {Position}"
+            "letter {Position}"
           ]
         }
       ],
@@ -158,41 +158,6 @@
               "name": {
                 "value": "forward"
               }
-            },
-            {
-              "name": {
-                "value": "letter A"
-              }
-            },
-            {
-              "name": {
-                "value": "letter B"
-              }
-            },
-            {
-              "name": {
-                "value": "letter C"
-              }
-            },
-            {
-              "name": {
-                "value": "letter d"
-              }
-            },
-            {
-              "name": {
-                "value": "letter e"
-              }
-            },
-            {
-              "name": {
-                "value": "letter f"
-              }
-            },
-            {
-              "name": {
-                "value": "letter g"
-              }
             }
           ]
         },
@@ -202,6 +167,26 @@
             {
               "name": {
                 "value": "error"
+              }
+            },
+            {
+              "name": {
+                "value": "a"
+              }
+            },
+            {
+              "name": {
+                "value": "b"
+              }
+            },
+            {
+              "name": {
+                "value": "c"
+              }
+            },
+            {
+              "name": {
+                "value": "d"
               }
             }
           ]

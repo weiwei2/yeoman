@@ -40,10 +40,38 @@ class Direction(Enum):
     LEFT = ['left', 'go left']
     RIGHT = ['right', 'go right']
     STOP = ['stop', 'brake']
-    LETTER_A=['letter a']
-    LETTER_B=['letter b']
-    LETTER_C=['letter c']
 
+class Position(Enum):
+    """
+    the list of flag semaphore positions and their respective variation
+    these variations correspond to the skill slot value
+    """
+    A=['a']
+    B=['b']
+    C=['c']
+    D=['d']
+    E=['e']
+    F=['f']
+    G=['g']
+    H=['h']
+    I=['i']
+    J=['j']
+    K=['k']
+    L=['l']
+    M=['m']
+    N=['n']
+    O=['o']
+    P=['p']
+    Q=['q']
+    R=['r']
+    S=['s']
+    T=['t']
+    U=['u']
+    V=['v']
+    W=['w']
+    X=['x']
+    Y=['y']
+    Z=['z']
 
 class Command(Enum):
     """
@@ -119,6 +147,10 @@ class MindstormsGadget(AlexaGadget):
                 # Expected params: [command]
                 self._activate(payload["command"])
 
+            if control_type=="position":
+                #expercted params: [position]
+                self._flagpostion(payload["position"])
+
         except KeyError:
             print("Missing expected parameters: {}".format(directive), file=sys.stderr)
 
@@ -136,11 +168,13 @@ class MindstormsGadget(AlexaGadget):
             """self.drive.on_for_seconds(SpeedPercent(speed), SpeedPercent(speed), duration, block=is_blocking)"""
             """self.COMMAND_RUN_TO_ABS_POS(80)"""
             """self.right_motor.run_to_abs_pos(position_sp = 30)"""
-            self.right_motor.on_to_position(20,50)
+            self.right_motor.on_to_position(SemaphoreSpeed,duration)
 
         if direction in Direction.BACKWARD.value:
             """self.drive.on_for_seconds(SpeedPercent(-speed), SpeedPercent(-speed), duration, block=is_blocking)"""
-            self.right_motor.on_to_position(SemaphoreSpeed,90)
+            """use duration as degree for testing"""
+            """aka when say move forward 20 sec is actually setting to 20 tacho turn"""
+            self.right_motor.on_to_position(SemaphoreSpeed,duration)
 
         if direction in (Direction.RIGHT.value + Direction.LEFT.value):
             self._turn(direction, speed)
@@ -148,21 +182,19 @@ class MindstormsGadget(AlexaGadget):
 
         if direction in Direction.STOP.value:
             self.drive.off()
-            self.patrol_mode = False
-
-        """beginning of definition"""
-        if direction in Direction.LETTER_A.value:        
-            """letter A"""
-            self.right_motor.on_to_position(20,90)
-            """self.left_motor.on_to_position(SemaphoreSpeed,0)"""
-        if direction in Direction.LETTER_B.value:          
-            """letter B"""
-            self.right_motor.on_to_position(20,70)
-            self.left_motor.on_to_position(SemaphoreSpeed,90)
-        if direction in Direction.LETTER_C.value:         
-            """letter C"""
-            self.right_motor.on_to_position(20,20)
-            self.left_motor.on_to_position(SemaphoreSpeed,0)
+            self.patrol_mode = False        
+    
+    def _flagpostion(self,position, speed=SemaphoreSpeed):
+        """
+        handles flag position
+        """
+        print("flag position: ({},{})".format(position,speed),file=sys.stderr)
+        if position in Position.A.value:            
+            self.right_motor.on_to_position(speed,20)
+            self.left_motor.on_to_position(speed,90)
+        if position in Position.B.value:            
+            self.right_motor.on_to_position(speed,80)
+            self.left_motor.on_to_position(speed,0)
 
     def _activate(self, command, speed=SemaphoreSpeed):
         """
@@ -177,9 +209,7 @@ class MindstormsGadget(AlexaGadget):
 
         if command in Command.MOVE_SQUARE.value:
             for i in range(4):
-                """self._move("right", 2, speed, is_blocking=True)"""
-                self.right_motor.run_to_abs_pos(position_sp = 30)
-
+                self._move("right", 2, speed, is_blocking=True)
         
         if command in Command.PATROL.value:
             # Set patrol mode to resume patrol thread processing
