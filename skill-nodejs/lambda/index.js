@@ -27,21 +27,21 @@ const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
-    handle: async function(handlerInput) {
+    handle: async function (handlerInput) {
 
         let request = handlerInput.requestEnvelope;
         let { apiEndpoint, apiAccessToken } = request.context.System;
         let apiResponse = await Util.getConnectedEndpoints(apiEndpoint, apiAccessToken);
         if ((apiResponse.endpoints || []).length === 0) {
             return handlerInput.responseBuilder
-            .speak(`I couldn't find an EV3 Brick connected to this Echo device. Please check to make sure your EV3 Brick is connected, and try again.`)
-            .getResponse();
+                .speak(`I couldn't find an EV3 Brick connected to this Echo device. Please check to make sure your EV3 Brick is connected, and try again.`)
+                .getResponse();
         }
-        console.log("THIS.EVENT = " + JSON.stringify(this.event));//debug
+
         // Store the gadget endpointId to be used in this skill session
         let endpointId = apiResponse.endpoints[0].endpointId || [];
         Util.putSessionAttribute(handlerInput, 'endpointId', endpointId);
-
+        console.log("THIS.EVENT = " + JSON.stringify(this.event));//debug
         return handlerInput.responseBuilder
             .speak("Welcome, you can start issuing move commands")
             .reprompt("Awaiting commands")
@@ -100,9 +100,10 @@ const MoveIntentHandler = {
             });
 
         const speechOutput = (direction === "brake")
-            ?  "Applying brake"
+            ? "Applying brake"
+            //: `${direction} ${duration} seconds at ${speed} percent speed`;
             : `${direction} ${duration} seconds at ${speed} percent speed`;
-        console.log("THIS.EVENT = " + JSON.stringify(this.event));//debug
+
         return handlerInput.responseBuilder
             .speak(speechOutput)
             .reprompt("awaiting command")
@@ -126,7 +127,7 @@ const SetCommandIntentHandler = {
                 .speak("Can you repeat that?")
                 .reprompt("What was that again?").getResponse();
         }
-
+        console.log("THIS.EVENT = " + JSON.stringify(this.event));//debug
         const attributesManager = handlerInput.attributesManager;
         let endpointId = attributesManager.getSessionAttributes().endpointId || [];
         let speed = attributesManager.getSessionAttributes().speed || "50";
@@ -147,6 +148,42 @@ const SetCommandIntentHandler = {
     }
 };
 
+//the SetFlagPositionIntent request
+const SetFlagPositionIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'SetFlagPositionIntent';
+    },
+    handle: function (handlerInput) {
+
+        let position = Alexa.getSlotValue(handlerInput.requestEnvelope, 'Position');
+        if (!position) {
+            return handlerInput.responseBuilder
+                .speak("Can you repeat that letter?")
+                .reprompt("What was that again?").getResponse();
+        }
+        console.log("THIS.EVENT = " + JSON.stringify(this.event));//debug
+        const attributesManager = handlerInput.attributesManager;
+        let endpointId = attributesManager.getSessionAttributes().endpointId || [];
+        let speed = attributesManager.getSessionAttributes().speed || "20";
+        //let speed=attributesManager.getSessionAttributes().
+
+        // Construct the directive with the payload containing the move parameters
+        let directive = Util.build(endpointId, NAMESPACE, NAME_CONTROL,
+            {
+                type: 'position',
+                position: position,
+                speed: 20
+            });
+
+        return handlerInput.responseBuilder
+            .speak(`letter ${position} selected`)
+            .reprompt("awaiting command")
+            .addDirective(directive)
+            .getResponse();
+    }
+};
+
 // The SkillBuilder acts as the entry point for your skill, routing all request and response
 // payloads to the handlers above. Make sure any new handlers or interceptors you've
 // defined are included below. The order matters - they're processed top to bottom.
@@ -156,6 +193,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         SetSpeedIntentHandler,
         SetCommandIntentHandler,
         MoveIntentHandler,
+        SetFlagPositionIntentHandler,
         Common.HelpIntentHandler,
         Common.CancelAndStopIntentHandler,
         Common.SessionEndedRequestHandler,
