@@ -1,16 +1,16 @@
-# yeoman
+# Yeoman
 This is a LEGO Mindstorm EV3 with Amazon Alexa voice command trainer for flag semaphore
 Flag Semaphore is telemetry system conveying information at a distance by means of visual signals with hand-held flags, rods, disks, paddles, or occasionally bare or gloved hands. Information is encoded by the position of the flags where it is read when the flag is in a fixed position. Semaphores were adopted and widely used in the maritime world in the 19th century. Despite modern alternative electronic communication means, flag semaphore is use a must learnt subject by all navies and mariners around the world.
 
 ## Connection Diagram
 ev3_yeoman.jpg 
-<p align="center">
+<p align="left">
   <img src="ev3_yeoman.jpg" width="400" title="connection diagram">
 </p>
 
 ##### Video showing operation\
 [![](http://img.youtube.com/vi/MzIEqMTVzdM/0.jpg)](http://www.youtube.com/watch?v=MzIEqMTVzdM "Yeoman decoding flag semaphore")
-ev3_yeoman.mp4
+<br>ev3_yeoman.mp4 is the mp4 of this video, also uploaded to this repository
 
 ## Instruction to use
 1) open yeoman signal
@@ -44,3 +44,7 @@ W=['w','whisky']
 X=['x','x-ray']
 Y=['y','yankee']
 Z=['z','zulu']
+![alt text](https://en.wikipedia.org/wiki/NATO_phonetic_alphabet#/media/File:FAA_Phonetic_and_Morse_Chart2.svg)
+
+## References
+[1] https://www.hackster.io/cheahweileow/yeoman-signal-ev3-semaphore-trainer-bot-for-sailor-751332
