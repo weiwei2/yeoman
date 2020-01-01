@@ -1,5 +1,9 @@
 #alexa skill id and secret in ini, ignore
 *.ini
+yeoman.ini
+
+#video file
+*.mp4
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
