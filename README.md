@@ -44,7 +44,7 @@ W=['w','whisky']
 X=['x','x-ray']
 Y=['y','yankee']
 Z=['z','zulu']
-![alt text](https://en.wikipedia.org/wiki/NATO_phonetic_alphabet#/media/File:FAA_Phonetic_and_Morse_Chart2.svg)
+
 
 ## References
 [1] https://www.hackster.io/cheahweileow/yeoman-signal-ev3-semaphore-trainer-bot-for-sailor-751332
